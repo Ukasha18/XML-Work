@@ -1,0 +1,29 @@
+
+<!DOCTYPE company [
+  <!ELEMENT company (employee+, client?)>
+  <!ELEMENT employee (name, (email | number), password)>
+  <!ELEMENT client (name, email, password)>
+  <!ELEMENT name (#PCDATA)>
+  <!ELEMENT email (#PCDATA)>
+  <!ELEMENT number (#PCDATA)>
+  <!ELEMENT password (#PCDATA)>
+  <!ATTLIST email domain CDATA #REQUIRED>
+  <!ENTITY ps "pass1122">
+]>
+<company>
+  <employee>
+    <name>Ukasha Aziz</name>
+    <email domain="example.com">Ukasha@example.com</email>
+    <password>&ps;</password>
+  </employee>
+  <employee>
+    <name>Aziz</name>
+    <number>1234567890</number>
+    <password>&ps;</password>
+  </employee>
+  <client>
+    <name>Acme Corp</name>
+    <email domain="acme.com">info@acme.com</email>
+    <password>&ps;</password>
+  </client>
+  </company>
