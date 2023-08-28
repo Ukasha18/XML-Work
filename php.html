@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MarkSheet</title>
+</head>
+<body>
+    <h1>MarkSheet</h1>
+    <form id="marksheet-form">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required><br><br>
+        
+        <label for="english">English Marks:</label>
+        <input type="number" id="english" name="english" required><br><br>
+        
+        <label for="urdu">Urdu Marks:</label>
+        <input type="number" id="urdu" name="urdu" required><br><br>
+        
+        <label for="maths">Maths Marks:</label>
+        <input type="number" id="maths" name="maths" required><br><br>
+        
+        <label for="physics">Physics Marks:</label>
+        <input type="number" id="physics" name="physics" required><br><br>
+        
+        <label for="chemistry">Chemistry Marks:</label>
+        <input type="number" id="chemistry" name="chemistry" required><br><br>
+        
+        <input type="submit" value="Generate MarkSheet">
+    </form>
+
+    <div id="marksheet-output"></div>
+
+    <script>
+        document.getElementById("marksheet-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const username = document.getElementById("username").value;
+            const english = parseFloat(document.getElementById("english").value);
+            const urdu = parseFloat(document.getElementById("urdu").value);
+            const maths = parseFloat(document.getElementById("maths").value);
+            const physics = parseFloat(document.getElementById("physics").value);
+            const chemistry = parseFloat(document.getElementById("chemistry").value);
+
+            const obtainedMarks = english + urdu + maths + physics + chemistry;
+            const totalMarks = 500; // Assuming total marks for all subjects is 500
+
+            const percentage = (obtainedMarks / totalMarks) * 100;
+
+            let grade, remarks;
+
+            if (percentage >= 80) {
+                grade = "A+";
+                remarks = "Excellent!";
+            } else if (percentage >= 70) {
+                grade = "A";
+                remarks = "Very Good!";
+            } else if (percentage >= 60) {
+                grade = "B";
+                remarks = "Good!";
+            } else if (percentage >= 50) {
+                grade = "C";
+                remarks = "Average";
+            } else {
+                grade = "F";
+                remarks = "Needs Improvement";
+            }
+
+            const marksheetOutput = `
+                <h2>Student Information</h2>
+                Username: ${username}<br>
+                English Marks: ${english}<br>
+                Urdu Marks: ${urdu}<br>
+                Maths Marks: ${maths}<br>
+                Physics Marks: ${physics}<br>
+                Chemistry Marks: ${chemistry}<br>
+                <h2>MarkSheet</h2>
+                Obtained Marks: ${obtainedMarks}<br>
+                Total Marks: ${totalMarks}<br>
+                Percentage: ${percentage.toFixed(2)}%<br>
+                Grade: ${grade}<br>
+                Remarks: ${remarks}
+            `;
+
+            document.getElementById("marksheet-output").innerHTML = marksheetOutput;
+        });
+    </script>
+</body>
+</html>
